@@ -1,0 +1,53 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+#- main
+
+pool:
+  #vmImage: ubuntu-latest
+  name: VM
+  
+variables:
+  buildConfiguration: "Release"
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Install .Net Core SDK'
+  inputs:
+    version: 6.0.x
+    performMultiLevelLookup: true
+
+- task: UseDotNet@2
+  displayName: 'Configure .Net version to use'
+  inputs:
+    version: 6.0.x
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build projects'
+  inputs:
+    command: build
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+# - task: DotNetCoreCLI@2
+#   displayName: 'Execute unit tests'
+#   inputs:
+#     command: test
+#     projects: '**/*.Test.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Create Publish Package'
+  inputs:
+    command: publish
+    publishWebProjects: true
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Package'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'WebApp'
