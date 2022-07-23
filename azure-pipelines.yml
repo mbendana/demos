@@ -15,7 +15,7 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    echo -e "!#/bin/bash\necho Hello, World!" > hello_world.sh
+    echo -e "#!/bin/bash\necho Hello, World!" > hello_world.sh
   displayName: "Create hello_world bash script"
 
 - script: |
