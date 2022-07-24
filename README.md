@@ -1,7 +1,6 @@
+[![Build Status](https://dev.azure.com/mhaltontk/demos/_apis/build/status/mbendana.demos?branchName=main&jobName=Job)](https://dev.azure.com/mhaltontk/demos/_build/latest?definitionId=11&branchName=main)
 # Introduction 
 TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
-
-Minor change added
 
 # Getting Started
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
